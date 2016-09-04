@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 version = '1.0'
@@ -15,6 +16,15 @@ repositories {
 }
 
 dependencies {
+	compile "org.springframework.boot:spring-boot-starter-web:1.2.6.RELEASE"
+	compile "org.springframework.boot:spring-boot-starter-actuator:1.2.6.RELEASE"
+	compile "org.springframework.boot:spring-boot-starter:1.2.6.RELEASE"
+    compile "org.springframework.boot:spring-boot-autoconfigure:1.2.6.RELEASE"
+    compile "org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE"
+	testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile "junit:junit:4.11", {
+        exclude group: 'org.hamcrest'
+    }
 }
 
 test {
