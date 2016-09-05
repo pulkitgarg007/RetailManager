@@ -2,10 +2,13 @@ package com.retail.manager.repository;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeMap;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Repository;
 
 import com.retail.manager.domain.ShopDetails;
+import com.retail.manager.util.DistanceCalculator;
 
 @Repository
 public class ShopRepository {
@@ -17,7 +20,16 @@ public class ShopRepository {
 	}
 
 	public ShopDetails searchShop(String customerLongitude, String customerLatitude) {
-		return new ShopDetails();
+		if (CollectionUtils.isNotEmpty(shopDetailsList)){
+			TreeMap<Double, ShopDetails> distanceMap = new TreeMap< Double, ShopDetails>();
+			for(ShopDetails shopDetails :shopDetailsList){
+				Double distance = DistanceCalculator.getDistance(customerLatitude, customerLongitude, shopDetails);
+				distanceMap.put(distance, shopDetails);
+			}		
+			return distanceMap.firstEntry().getValue();
+		}else{
+			return new ShopDetails();
+		}
 	}
 
 	public void setShopDetailsList(Set<ShopDetails> shopDetailsList) {

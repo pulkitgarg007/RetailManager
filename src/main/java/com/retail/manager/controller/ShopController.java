@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.retail.manager.domain.ShopDetails;
+import com.retail.manager.exception.ValidationException;
 import com.retail.manager.service.ShopService;
 
 @RestController
@@ -31,9 +32,12 @@ public class ShopController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/searchShop", method = RequestMethod.POST)
+	@RequestMapping(value="/searchShop", method = RequestMethod.GET)
 	public ResponseEntity<?> searchShop(@RequestParam(value = "customerLongitude") String customerLongitude,
 			@RequestParam(value = "customerLatitude") String customerLatitude) {
+		if(customerLongitude== null || customerLatitude == null){
+			throw new ValidationException("Search Criteria is Empty");
+		}
 		ShopDetails shopDetails = shopService.searchShop(customerLongitude, customerLatitude);
 		return new ResponseEntity<>(shopDetails, HttpStatus.OK);
 	}
@@ -41,8 +45,16 @@ public class ShopController {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(BAD_REQUEST)
 	@ResponseBody
-	public int handleException(Exception exception) {
-		return BAD_REQUEST.value();
+	public String handleException(Exception exception) {
+		return exception.getMessage();
+	}
+	
+	@ExceptionHandler(ValidationException.class)
+	@ResponseStatus(BAD_REQUEST)
+	@ResponseBody
+	public String handleValidationException(ValidationException exception) {
+		
+		return exception.getMessage();
 	}
 
 	public ShopService getShopService() {

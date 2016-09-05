@@ -2,6 +2,7 @@ package com.retail.manager.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -13,11 +14,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.retail.manager.builder.ShopAddressBuilder;
+import com.retail.manager.builder.ShopDetailsBuilder;
 import com.retail.manager.client.ShopAddressClient;
 import com.retail.manager.domain.Geometry;
 import com.retail.manager.domain.GoogleResponse;
 import com.retail.manager.domain.Location;
 import com.retail.manager.domain.Results;
+import com.retail.manager.domain.ShopAddress;
 import com.retail.manager.domain.ShopDetails;
 import com.retail.manager.repository.ShopRepository;
 
@@ -68,6 +72,17 @@ public class ShopServiceTest {
 		when(shopAddressClient.getLongitudeLatitude(any())).thenReturn(response);
 		String resp = shopService.addShop(new ShopDetails());
 		assertEquals("NOT FOUND", resp);
+
+	}
+	
+	@Test
+	public void shouldReturnShopdetailsObject() {
+		ShopAddress shopAddress = new ShopAddressBuilder().withNumber("123").withPostCode("412307").build();
+		ShopDetails shopDetails = new ShopDetailsBuilder().withShopLatitude("75.234567")
+				.withShopLongitude("95.65437").withShopName("Vijay Sales").withShopAddress(shopAddress).build();
+		when(shopRepository.searchShop(anyString(),anyString())).thenReturn(shopDetails);
+		ShopDetails resp = shopService.searchShop("95.23244","23.3445");
+		assertEquals(resp.getShopName(), "Vijay Sales");
 
 	}
 	
