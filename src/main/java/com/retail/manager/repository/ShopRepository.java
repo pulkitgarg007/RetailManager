@@ -12,8 +12,8 @@ public class ShopRepository {
 
 	private Set<ShopDetails> shopDetailsList = new HashSet<ShopDetails>();
 	
-	public void addShop(ShopDetails shopDetails) {
-		this.shopDetailsList.add(shopDetails);
+	public boolean addShop(ShopDetails shopDetails) {
+		return this.shopDetailsList.add(shopDetails);
 	}
 
 	public ShopDetails searchShop(String customerLongitude, String customerLatitude) {

@@ -1,6 +1,6 @@
 package com.retail.manager.service;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +21,12 @@ public class ShopService {
 	public String addShop(ShopDetails shopDetails) {
 		GoogleResponse response = shopAddressClient.getLongitudeLatitude(shopDetails);
 		if(response.getStatus().equals("OK") && CollectionUtils.isNotEmpty(response.getResults())){
-			shopDetails.setShopLatitude(response.getResults().get(0).getLocation().getLat());
-			shopDetails.setShopLongitude(response.getResults().get(0).getLocation().getLng());
-			shopRepository.addShop(shopDetails);
+			shopDetails.setShopLatitude(response.getResults().get(0).getGeometry().getLocation().getLat());
+			shopDetails.setShopLongitude(response.getResults().get(0).getGeometry().getLocation().getLng());
+			boolean duplicate = shopRepository.addShop(shopDetails);
+			if(!duplicate){
+				return "DUPLICATE RECORD";
+			}
 			return "OK";
 		}else{
 			return "NOT FOUND";
