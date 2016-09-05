@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'spring-boot'
 
 sourceCompatibility = 1.8
 version = '1.0'
@@ -11,9 +12,20 @@ jar {
     }
 }
 
-repositories {
-    mavenCentral()
+buildscript {
+
+	repositories {
+	    mavenCentral()
+	}
+	
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
 }
+
+repositories {
+	    mavenCentral()
+	}
 
 dependencies {
 	compile "org.springframework.boot:spring-boot-starter-web:1.2.6.RELEASE"
