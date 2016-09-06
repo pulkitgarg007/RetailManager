@@ -1,5 +1,10 @@
 package com.retail.manager.domain;
 
+/**
+ * Results domian class
+ * @author Pulkit Garg
+ *
+ */
 public class Results {
 	private String place_id;
 

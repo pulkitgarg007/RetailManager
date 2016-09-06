@@ -1,5 +1,10 @@
 package com.retail.manager.domain;
 
+/**
+ * Geometry Domain Class
+ * @author Pulkit Garg
+ *
+ */
 public class Geometry{
     private String location_type;
 

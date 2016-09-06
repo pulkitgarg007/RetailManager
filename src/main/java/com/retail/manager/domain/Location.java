@@ -1,5 +1,10 @@
 package com.retail.manager.domain;
 
+/**
+ * Location Domain Class
+ * @author Pulkit Garg
+ *
+ */
 public class Location
 {
     private String lng;

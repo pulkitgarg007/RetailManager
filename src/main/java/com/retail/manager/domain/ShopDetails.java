@@ -2,6 +2,12 @@ package com.retail.manager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Shop Details Domain class
+ * @author Pulkit Garg
+ *
+ */
+
 @JsonIgnoreProperties
 public class ShopDetails {
 	
@@ -62,6 +68,4 @@ public class ShopDetails {
 			return false;
 		return true;
 	}
-	
-	
 }

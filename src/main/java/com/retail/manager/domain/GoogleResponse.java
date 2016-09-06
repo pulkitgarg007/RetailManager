@@ -2,6 +2,11 @@ package com.retail.manager.domain;
 
 import java.util.List;
 
+/**
+ * Google Response Domian Class
+ * @author Pulkit Garg
+ *
+ */
 public class GoogleResponse {
 	private List<Results> results;
 	private String status;

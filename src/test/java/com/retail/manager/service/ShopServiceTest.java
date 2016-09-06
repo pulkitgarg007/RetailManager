@@ -25,6 +25,11 @@ import com.retail.manager.domain.ShopAddress;
 import com.retail.manager.domain.ShopDetails;
 import com.retail.manager.repository.ShopRepository;
 
+/**
+ * This is a test class for Shop Service
+ * @author Pulkit Garg
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ShopServiceTest {
 

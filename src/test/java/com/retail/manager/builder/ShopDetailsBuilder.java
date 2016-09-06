@@ -2,7 +2,11 @@ package com.retail.manager.builder;
 
 import com.retail.manager.domain.ShopAddress;
 import com.retail.manager.domain.ShopDetails;
-
+/**
+ * This is Shop Details Builder class
+ * @author Pulkit Garg
+ *
+ */
 public class ShopDetailsBuilder implements Builder<ShopDetails> {
 	
 	private String shopName;	
@@ -40,6 +44,4 @@ public class ShopDetailsBuilder implements Builder<ShopDetails> {
 		return this;
 	}
 	
-	
-
 }

@@ -17,31 +17,46 @@ import org.springframework.web.bind.annotation.RestController;
 import com.retail.manager.domain.ShopDetails;
 import com.retail.manager.exception.ValidationException;
 import com.retail.manager.service.ShopService;
-
+/**
+ * This is a Controller class of Application which exposes endpoints
+ * @author Pulkit Garg
+ *
+ */
 @RestController
-@RequestMapping("/shops")
+@RequestMapping("/shop")
 public class ShopController {
 	
 	@Autowired
 	private ShopService shopService;
 	
-	@RequestMapping(value="/addShop", method = RequestMethod.POST)
+	@RequestMapping(value="/shop-details", method = RequestMethod.POST)
 	public ResponseEntity<?> addShop(@RequestBody ShopDetails shopDetails) {
+		//service call to add shop details
 		String response =  shopService.addShop(shopDetails);
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		if (response.equals("OK")){
+			return new ResponseEntity<>(response, HttpStatus.CREATED);
+		}else{
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
 	}
 	
-	@RequestMapping(value="/searchShop", method = RequestMethod.GET)
-	public ResponseEntity<?> searchShop(@RequestParam(value = "customerLongitude") String customerLongitude,
-			@RequestParam(value = "customerLatitude") String customerLatitude) {
+	@RequestMapping(value="/shop-address", method = RequestMethod.GET)
+	public ResponseEntity<?> searchShop(@RequestParam(value = "longitude") String customerLongitude,
+			@RequestParam(value = "latitude") String customerLatitude) {
+		//Checking if any of the parameter is null then throw exception
 		if(customerLongitude== null || customerLatitude == null){
 			throw new ValidationException("Search Criteria is Empty");
 		}
+		//service call to search shop 
 		ShopDetails shopDetails = shopService.searchShop(customerLongitude, customerLatitude);
 		return new ResponseEntity<>(shopDetails, HttpStatus.OK);
 	}
 	
+	/**
+	 * Method to handle Exception
+	 * @param exception
+	 * @return string
+	 */
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(BAD_REQUEST)
 	@ResponseBody
@@ -49,6 +64,11 @@ public class ShopController {
 		return exception.getMessage();
 	}
 	
+	/**
+	 * Method to handle Custom validation Exception
+	 * @param exception
+	 * @return string
+	 */
 	@ExceptionHandler(ValidationException.class)
 	@ResponseStatus(BAD_REQUEST)
 	@ResponseBody

@@ -2,10 +2,16 @@ package com.retail.manager.util;
 
 import com.retail.manager.domain.ShopDetails;
 
+/**
+ * This is a Distance Claculator class which returns distance in km between two locations
+ * @author Pulkit Garg
+ *
+ */
 public class DistanceCalculator {
-
+	
 	public static double getDistance(String latitude, String longitude, ShopDetails shopDetails) {
 		
+		//get double value of latitudes and longitudes
 		double lat1 = Double.valueOf(shopDetails.getShopLatitude());
 		double lng1 = Double.valueOf(shopDetails.getShopLongitude());
 		
@@ -16,7 +22,7 @@ public class DistanceCalculator {
 	}
 
 	private static double distance(double lat1, double lng1, double lat2, double lng2) {
-
+		
 		double earthRadius = 6371; 
 
 		double dLat = Math.toRadians(lat2 - lat1);
@@ -29,7 +35,7 @@ public class DistanceCalculator {
 				* Math.cos(Math.toRadians(lat2));
 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
+		//calculate distance in kms
 		double dist = earthRadius * c;
 
 		return dist; 

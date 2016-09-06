@@ -14,6 +14,11 @@ import com.retail.manager.domain.ShopDetails;
 import com.retail.manager.exception.ValidationException;
 import com.retail.manager.service.ShopService;
 
+/**
+ * This is a Junit file for ShopController class
+ * @author Pulkit Garg
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ShopControllerTest {
 	

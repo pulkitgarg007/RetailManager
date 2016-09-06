@@ -7,7 +7,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.retail.manager.domain.GoogleResponse;
 import com.retail.manager.domain.ShopDetails;
-
+/**
+ * This class is responsible to make a call to google API and fetching Longitude and Latitude for a 
+ * given postal code, shop name and number
+ * @author Pulkit Garg
+ *
+ */
 @Component
 public class ShopAddressClient {
 	
@@ -17,10 +22,13 @@ public class ShopAddressClient {
     @Value("https://maps.googleapis.com/maps/api/geocode/json?")
     private String googleGeocodingURL;
     private final String googleKey = "AIzaSyDuSvm27mjmj11Y6fLeyT6gzBGpH3fJ3Vo";
-
+    
+    
     public GoogleResponse getLongitudeLatitude(ShopDetails shopDetails) {
         GoogleResponse response;
-        String url = googleGeocodingURL + "address="+shopDetails.getShopName()+"&components=postal_code:"+shopDetails.getShopAddress().getPostCode()+"&key="+googleKey;
+        //building an url of google api
+        String url = googleGeocodingURL + "address="+shopDetails.getShopAddress().getNumber()+","+shopDetails.getShopName()+
+        		"&components=postal_code:"+shopDetails.getShopAddress().getPostCode()+"&key="+googleKey;
         response =  restTemplate.getForObject(url, GoogleResponse.class);
         return response;        
     }

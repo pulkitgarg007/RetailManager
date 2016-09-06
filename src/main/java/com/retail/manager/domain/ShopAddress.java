@@ -1,5 +1,10 @@
 package com.retail.manager.domain;
 
+/**
+ * Shop Address Domain Class
+ * @author Pulkit Garg
+ *
+ */
 public class ShopAddress {
 	
 	private String number;

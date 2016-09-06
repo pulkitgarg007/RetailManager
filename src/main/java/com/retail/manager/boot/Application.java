@@ -7,7 +7,11 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Import;
 
 import com.retail.manager.configuration.ApplicationConfiguration;
-
+/**
+ * This is the Application class having main method which is required to run the application.
+ * @author Pulkit Garg
+ *
+ */
 @SpringBootApplication
 @Import({ApplicationConfiguration.class})
 public class Application extends SpringBootServletInitializer{

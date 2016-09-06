@@ -9,7 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.web.servlet.DispatcherServlet;
-
+/**
+ * This is a test class for Web Configuration
+ * @author Pulkit Garg
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class WebConfigurationTest {
     

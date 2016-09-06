@@ -25,7 +25,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+/**
+ * This is the Application Configuration class of project where we have different Mappers Converters registered 
+ * @author Pulkit Garg
+ *
+ */
 @Import({ WebConfiguration.class })
 @Configuration
 @EnableWebMvc
@@ -52,7 +56,6 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 	private void addDefaultHttpMessageConverters(
 			List<HttpMessageConverter<?>> messageConverters) {
 		// as per WebMvcConfigurationSupport.addDefaultHttpMessageConverters()
-
 		StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
 		stringConverter.setWriteAcceptCharset(false);
 

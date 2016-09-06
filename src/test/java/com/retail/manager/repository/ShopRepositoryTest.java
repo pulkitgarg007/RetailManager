@@ -14,6 +14,11 @@ import com.retail.manager.builder.ShopDetailsBuilder;
 import com.retail.manager.domain.ShopAddress;
 import com.retail.manager.domain.ShopDetails;
 
+/**
+ * This is a Junit test file for ShopRepository Class
+ * @author Pulkit Garg
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ShopRepositoryTest {
 	
@@ -52,7 +57,7 @@ public class ShopRepositoryTest {
 	@Test
 	public void shouldReturnBlankShopWhenSearchShopIsCalledAndShopdetailsIsEmpty(){
 		ShopDetails shopdetails = shopRepository.searchShop("94.234567","74.263940");
-		assertEquals(shopdetails.getShopName(), null);
+		assertEquals(shopdetails, null);
 		
 	}
 

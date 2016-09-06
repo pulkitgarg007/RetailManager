@@ -9,6 +9,11 @@ import com.retail.manager.domain.GoogleResponse;
 import com.retail.manager.domain.ShopDetails;
 import com.retail.manager.repository.ShopRepository;
 
+/**
+ * This is a Shop Service class which delegates the call to repository class
+ * @author Pulkit Garg
+ *
+ */
 @Service
 public class ShopService {
 	
@@ -17,20 +22,33 @@ public class ShopService {
 	
 	@Autowired
 	private ShopAddressClient shopAddressClient;
-
+	
 	public String addShop(ShopDetails shopDetails) {
+		
+		//creating string variable to avoid sonar complains
+		String returnResponse = null;
+		
+		//call to get latitude and logitude from google Geocoding API
 		GoogleResponse response = shopAddressClient.getLongitudeLatitude(shopDetails);
+		
+		//if results is not empty and status is ok
 		if(response.getStatus().equals("OK") && CollectionUtils.isNotEmpty(response.getResults())){
 			shopDetails.setShopLatitude(response.getResults().get(0).getGeometry().getLocation().getLat());
 			shopDetails.setShopLongitude(response.getResults().get(0).getGeometry().getLocation().getLng());
+			
+			//checking if duplicate shop details are added
 			boolean duplicate = shopRepository.addShop(shopDetails);
+			
+			//returning message on basis of output
 			if(!duplicate){
-				return "DUPLICATE RECORD";
-			}
-			return "OK";
+				returnResponse = "DUPLICATE RECORD";
+			}else{
+				returnResponse =  "OK";
+			}			
 		}else{
-			return "NOT FOUND";
+			returnResponse = "NOT FOUND";
 		}
+		return returnResponse;
 	}
 
 	public ShopDetails searchShop(String customerLongitude, String customerLatitude) {

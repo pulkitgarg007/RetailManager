@@ -1,7 +1,11 @@
 package com.retail.manager.builder;
 
 import com.retail.manager.domain.ShopAddress;
-
+/**
+ * 
+ * @author Pulkit Garg
+ *
+ */
 public class ShopAddressBuilder implements Builder<ShopAddress>{
 	
 	private String number;
