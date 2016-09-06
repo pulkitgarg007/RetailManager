@@ -16,7 +16,7 @@ gradle bootRun
 By default application runs on port 8080. However you can change the port number in application.yml file.
 
 Sample Endpoints:-
-http://localhost:8080/RetailManager/shops/addShop
+http://localhost:8080/RetailManager/shop/shop-details
 Request Body:-
 {  
    "shopName":"VijaySales",
@@ -26,7 +26,7 @@ Request Body:-
    }
 }
 
-http://localhost:8080/RetailManager/shops/searchShop?customerLongitude=73.8688812&customerLatitude=18.5236714
+http://localhost:8080/RetailManager/shop/shop-address?longitude=73.8688812&latitude=18.5236714
 Response Body :-
 {
   "shopName": "Chroma",
