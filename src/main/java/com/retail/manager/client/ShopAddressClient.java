@@ -19,9 +19,18 @@ public class ShopAddressClient {
 	@Autowired
 	private RestTemplate restTemplate;
 
-    @Value("https://maps.googleapis.com/maps/api/geocode/json?")
+    @Value("${google.geocoding.url}")
     private String googleGeocodingURL;
-    private final String googleKey = "AIzaSyDuSvm27mjmj11Y6fLeyT6gzBGpH3fJ3Vo";
+    
+    public String getGoogleGeocodingURL() {
+		return googleGeocodingURL;
+	}
+
+	public void setGoogleGeocodingURL(String googleGeocodingURL) {
+		this.googleGeocodingURL = googleGeocodingURL;
+	}
+
+	private final String googleKey = "AIzaSyDuSvm27mjmj11Y6fLeyT6gzBGpH3fJ3Vo";
     
     
     public GoogleResponse getLongitudeLatitude(ShopDetails shopDetails) {

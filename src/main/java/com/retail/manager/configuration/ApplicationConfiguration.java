@@ -10,6 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
@@ -37,6 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 		excludeFilters = { @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = ApplicationConfiguration.class) }, 
 		includeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {
 		Controller.class, Component.class, Repository.class }) })
+@PropertySource("classpath:application.properties")
 public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 
 	@Autowired
@@ -70,4 +73,9 @@ public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
     public RestTemplate restTemplate() { 
         return new RestTemplate();
     }
+	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 }
