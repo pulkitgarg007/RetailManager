@@ -13,11 +13,9 @@ jar {
 }
 
 buildscript {
-
 	repositories {
 	    mavenCentral()
 	}
-	
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
     }
@@ -26,14 +24,14 @@ buildscript {
 repositories {
 	    mavenCentral()
 	}
-
+	
 dependencies {
 	compile "org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE"
 	compile "org.springframework.boot:spring-boot-starter-actuator:1.4.0.RELEASE"
-	compile "org.springframework.boot:spring-boot-starter:1.4.0.RELEASE"
     compile "org.springframework.boot:spring-boot-autoconfigure:1.4.0.RELEASE"
     compile "org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE"
     compile "org.apache.commons:commons-collections4:4.0"
+    compile "log4j:log4j:1.2.12"
 	testCompile "org.mockito:mockito-core:1.9.5"
     testCompile "junit:junit:4.11", {
         exclude group: 'org.hamcrest'

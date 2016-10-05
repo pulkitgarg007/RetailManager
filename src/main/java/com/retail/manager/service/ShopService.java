@@ -1,6 +1,7 @@
 package com.retail.manager.service;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,13 @@ public class ShopService {
 	@Autowired
 	private ShopAddressClient shopAddressClient;
 	
+	private final static Logger logger = Logger.getLogger(ShopService.class);
+	
 	public String addShop(ShopDetails shopDetails) {
 		
 		//creating string variable to avoid sonar complains
 		String returnResponse = null;
-		
+		logger.debug("inside addShop method");
 		//call to get latitude and logitude from google Geocoding API
 		GoogleResponse response = shopAddressClient.getLongitudeLatitude(shopDetails);
 		
