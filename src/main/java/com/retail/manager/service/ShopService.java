@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.retail.manager.client.ShopAddressClient;
 import com.retail.manager.domain.GoogleResponse;
 import com.retail.manager.domain.ShopDetails;
+import com.retail.manager.repository.IShopRepository;
 import com.retail.manager.repository.ShopRepository;
 
 /**
@@ -17,6 +18,9 @@ import com.retail.manager.repository.ShopRepository;
  */
 @Service
 public class ShopService {
+	
+	@Autowired
+	private IShopRepository iShopRepository;
 	
 	@Autowired
 	private ShopRepository shopRepository;
@@ -41,7 +45,7 @@ public class ShopService {
 			
 			//checking if duplicate shop details are added
 			boolean duplicate = shopRepository.addShop(shopDetails);
-			
+			iShopRepository.save(shopDetails);
 			//returning message on basis of output
 			if(!duplicate){
 				returnResponse = "DUPLICATE RECORD";
@@ -55,15 +59,16 @@ public class ShopService {
 	}
 
 	public ShopDetails searchShop(String customerLongitude, String customerLatitude) {
-		return shopRepository.searchShop(customerLongitude, customerLatitude);
+		//return shopRepository.searchShop(customerLongitude, customerLatitude);
+		return null;
 	}
 
-	public ShopRepository getShopRepository() {
-		return shopRepository;
+	public IShopRepository getShopRepository() {
+		return iShopRepository;
 	}
 
-	public void setShopRepository(ShopRepository shopRepository) {
-		this.shopRepository = shopRepository;
+	public void setShopRepository(IShopRepository iShopRepository) {
+		this.iShopRepository = iShopRepository;
 	}
 
 	public ShopAddressClient getShopAddressClient() {
@@ -72,6 +77,10 @@ public class ShopService {
 
 	public void setShopAddressClient(ShopAddressClient shopAddressClient) {
 		this.shopAddressClient = shopAddressClient;
+	}
+	
+	public void setShopRepository(ShopRepository shopRepository) {
+		this.shopRepository = shopRepository;
 	}
 
 }

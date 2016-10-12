@@ -32,7 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Pulkit Garg
  *
  */
-@Import({ WebConfiguration.class })
+@Import({ WebConfiguration.class , MongoConfiguration.class})
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.retail.manager.*",}, useDefaultFilters = false, 
