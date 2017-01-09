@@ -28,7 +28,6 @@ public class ShopRepository {
 	public boolean addShop(ShopDetails shopDetails) {
 		//add the shopDetails in shopDetailsList collection
 		//will return true for a new entry and false for duplicate entry
-		// 
 		mongoTemplate.save(shopDetails);
 		return this.shopDetailsList.add(shopDetails);
 	}

@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.retail.manager.builder.ShopAddressBuilder;
 import com.retail.manager.builder.ShopDetailsBuilder;
@@ -23,6 +24,7 @@ import com.retail.manager.domain.Location;
 import com.retail.manager.domain.Results;
 import com.retail.manager.domain.ShopAddress;
 import com.retail.manager.domain.ShopDetails;
+import com.retail.manager.repository.IShopRepository;
 import com.retail.manager.repository.ShopRepository;
 
 /**
@@ -41,6 +43,12 @@ public class ShopServiceTest {
 
 	@Mock
 	private ShopAddressClient shopAddressClient;
+	
+	@Mock
+	private MongoTemplate mongoTemplate;
+	
+	@Mock
+	private IShopRepository iShopRepository;
 
 	@Test
 	public void shouldReturnOKIfGoogleResponseIsOk() {

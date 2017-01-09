@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.retail.manager.builder.ShopAddressBuilder;
 import com.retail.manager.builder.ShopDetailsBuilder;
@@ -24,6 +26,8 @@ public class ShopRepositoryTest {
 	
 	@InjectMocks
 	private ShopRepository shopRepository;
+	@Mock
+	private MongoTemplate mongoTemplate;
 		
 	@Test
 	public void shouldAddShopDetailsToShopDetailsList(){

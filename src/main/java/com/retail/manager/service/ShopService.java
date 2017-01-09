@@ -59,8 +59,8 @@ public class ShopService {
 	}
 
 	public ShopDetails searchShop(String customerLongitude, String customerLatitude) {
-		//return shopRepository.searchShop(customerLongitude, customerLatitude);
-		return null;
+		return shopRepository.searchShop(customerLongitude, customerLatitude);
+		//return null;
 	}
 
 	public IShopRepository getShopRepository() {
