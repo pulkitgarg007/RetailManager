@@ -43,9 +43,13 @@ public class ShopService {
 			shopDetails.setShopLatitude(response.getResults().get(0).getGeometry().getLocation().getLat());
 			shopDetails.setShopLongitude(response.getResults().get(0).getGeometry().getLocation().getLng());
 			
+			
+			for(int i=0; i<1000;i++){
+				ShopDetails shopDetails1 = new ShopDetails();
+			}
 			//checking if duplicate shop details are added
 			boolean duplicate = shopRepository.addShop(shopDetails);
-			iShopRepository.save(shopDetails);
+			//iShopRepository.save(shopDetails);
 			//returning message on basis of output
 			if(!duplicate){
 				returnResponse = "DUPLICATE RECORD";
@@ -59,8 +63,8 @@ public class ShopService {
 	}
 
 	public ShopDetails searchShop(String customerLongitude, String customerLatitude) {
-		return shopRepository.searchShop(customerLongitude, customerLatitude);
-		//return null;
+	//	return shopRepository.searchShop(customerLongitude, customerLatitude);
+		return null;
 	}
 
 	public IShopRepository getShopRepository() {

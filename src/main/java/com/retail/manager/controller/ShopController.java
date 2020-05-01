@@ -2,6 +2,10 @@ package com.retail.manager.controller;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +33,31 @@ public class ShopController {
 	@Autowired
 	private ShopService shopService;
 	
+	private List<ShopDetails> list;
+	
+	private final static Logger logger = Logger.getLogger(ShopService.class);
+	
 	@RequestMapping(value="/shop-details", method = RequestMethod.POST)
 	public ResponseEntity<?> addShop(@RequestBody ShopDetails shopDetails) {
 		//service call to add shop details
 		String response =  shopService.addShop(shopDetails);
+		if (response.equals("OK")){
+			return new ResponseEntity<>(response, HttpStatus.CREATED);
+		}else{
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public ResponseEntity<?> test() {
+		logger.debug("inside addShop method");
+		//service call to add shop details
+		for(int i=0; i<10000;i++){
+			list = new ArrayList<>();
+			ShopDetails shopDetails1 = new ShopDetails();
+			list.add(shopDetails1);
+		}
+		String response = "OK";
 		if (response.equals("OK")){
 			return new ResponseEntity<>(response, HttpStatus.CREATED);
 		}else{

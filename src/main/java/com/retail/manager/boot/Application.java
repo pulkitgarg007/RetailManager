@@ -2,6 +2,7 @@ package com.retail.manager.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Import;
@@ -12,7 +13,7 @@ import com.retail.manager.configuration.ApplicationConfiguration;
  * @author Pulkit Garg
  *
  */
-@SpringBootApplication
+@SpringBootApplication(exclude={SecurityAutoConfiguration.class})
 @Import({ApplicationConfiguration.class})
 public class Application extends SpringBootServletInitializer{
 
